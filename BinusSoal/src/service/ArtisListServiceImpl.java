@@ -36,7 +36,7 @@ public class ArtisListServiceImpl implements ArtisListService {
        ArtisList artisAge = new ArtisList(String.valueOf(age));
        ArtisList artisRole = new ArtisList(role);
        if (age < 15) {
-        System.out.println("Umur kurang dari 15 tahun");
+        System.out.println("Umur kurang dari 15 tahun tes");
        }else{
         artisListRepo.add(artisName, artisAge, artisRole);
         System.out.println("Berhasil menambah");
