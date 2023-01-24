@@ -18,7 +18,5 @@ public class ArtisList {
         this.artisInfo = artisInfo;
     }
 
-    public String[] split(String string) {
-        return null;
-    }
+  
 }

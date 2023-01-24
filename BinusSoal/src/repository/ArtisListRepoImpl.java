@@ -9,20 +9,22 @@ import Entities.ArtisList;
 
 public class ArtisListRepoImpl implements ArtisListRepo {
 
-    public ArtisList[][] data = new ArtisList[5][3];
+    public ArtisList[][] data = new ArtisList[5][4];
 
     @Override
     public ArtisList[][] getAll() {
         return data;
     }
 
-    private String GenerateId(ArtisList name) {
+    
 
+    private String GenerateId(ArtisList name) {
+        var nama = name.getArtisInfo();
         String first;
         String last;
-        String[] spliter = name.split(" ");
-        first = spliter[0];
-        last = spliter[spliter.length];
+        String[] spliter = nama.split(" ");
+        first = spliter[0].toUpperCase();
+        last = spliter[1].toUpperCase();
         Random random = new Random();
         int zzz = 0;
         while (true) {
@@ -67,10 +69,10 @@ public class ArtisListRepoImpl implements ArtisListRepo {
         Resize();
 
         ArtisList id = new ArtisList(GenerateId(name));
-
+        
         for (int i = 0; i < data.length; i++) {
-
-            if (data[i][0] != null) {
+           
+            if (data[i][0] == null) {
                 data[i][0] = id;   //<---- Erorr 
                 data[i][1] = name;
                 data[i][2] = age;
@@ -84,7 +86,7 @@ public class ArtisListRepoImpl implements ArtisListRepo {
     @Override
     public boolean remove(Integer number) {
 
-        if (data[(number - 1)][0] == null) {
+        if (data[(number - 1)][0] == null && data[(number - 1)][1] == null) {
             return false;
         } else if (number == (data.length + 1)) {
             data[(number - 1)][0] = null;
@@ -93,7 +95,7 @@ public class ArtisListRepoImpl implements ArtisListRepo {
             data[(number - 1)][3] = null;
             return true;
         } else {
-            for (int i = (number - 1); i < data.length; i++) {
+            for (int i = (number - 1); i < (data.length - 1); i++) {
                 data[(i)][0] = data[(i + 1)][0];
                 data[(i)][1] = data[(i + 1)][1];
                 data[(i)][2] = data[(i + 1)][2];
